@@ -1,0 +1,22 @@
+with lecture_done as (
+	SELECT enrolled_id, count(*) as cnt_done
+	from enrolleds_detail
+	where done = 1
+	group by enrolled_id
+), lecture_total as (
+	SELECT enrolled_id, count(*) as total_cnt
+	from enrolleds_detail
+	group by enrolled_id
+)
+SELECT a.enrolled_id, a.cnt_done, b.total_cnt, round((a.cnt_done/b.total_cnt), 2) as ratio
+from lecture_done a 
+inner join lecture_total b
+on a.enrolled_id = b.enrolled_id
+
+
+select enrolled_id,
+       sum(done) as done_cnt,
+       count(*) as total_cnt,
+       round(sum(done)/count(*), 2) as ratio
+ from enrolleds_detail
+group by enrolled_id
