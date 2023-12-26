@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>I 들의 동물원</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+    * {
+      font-family: 'Gowun Dodum', sans-serif;
+    }
+
+    body {     
+            background-size: cover;
+            background-position: center;
+            background-image: url("background1.jpeg"); 
+        } 
+/*title css*/
+.mytitle {
+            width: 700px;
+            height: 100px;
+            margin:auto;
+            color: white;
+            text-align: center;
+
+            padding-top: 30px;
+            border-radius: 8px;
+
+            background-image: url('https://www.ancient-origins.net/sites/default/files/field/image/Agesilaus-II-cover.jpg');
+            background-position: center;
+            background-size: cover;
+             
+        }
+    .mycards {
+      width: 85%;
+      margin: 1% auto 1% auto;
+      background-color: none;
+    }
+/*contaioner css 1 and 2*/
+    .container {
+      background-color: rgba(225, 225, 225, 0.8);
+      width: 80%;
+      margin: auto;
+ 
+    }
+    .container2{
+      display: flex;
+      width: 80%;
+      margin : auto;
+    }
+
+    .container3{
+      width: 80%;
+      margin : auto;
+    }
+
+ /* 이미지 슬라이드 쇼 css 입니다 */
+    .footer {
+      background-color: black;
+      width: 100%;
+      height: 200px;
+    }
+
+    /* 이미지 슬라이드 쇼 css 입니다 */
+    .images_slide {
+       display: flex;
+        justify-content: space-between;
+        width: 300px;
+        
+        margin: 1% 10px 1% 0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .mySlides>img {
+      vertical-align: middle;
+      width: 100px;
+      height: 300px;
+    }
+
+    /* Position the image container (needed to position the left and right arrows) */
+    .arrowcontainer {
+      position: relative;
+    }
+
+    /* Hide the images by default */
+    .mySlides {
+      display: none;
+    }
+
+    /* Add a pointer when hovering over the thumbnail images */
+    .cursor {
+      cursor: pointer;
+    }
+
+    /* Next & previous buttons */
+    .prev,
+    .next {
+      cursor: pointer;
+      position: absolute;
+      top: 40%;
+      width: auto;
+      padding: 16px;
+      margin-top: -50px;
+      color: white;
+      font-weight: bold;
+      font-size: 20px;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* Position the "next button" to the right */
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+
+    /* On hover, add a black background color with a little bit see-through */
+    .prev:hover,
+    .next:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    /* Number text (1/3 etc) */
+    .numbertext {
+      color: #f2f2f2;
+      font-size: 12px;
+      padding: 8px 12px;
+      position: absolute;
+      top: 0;
+    }
+
+    /* Container for image text */
+    .caption-container {
+      text-align: center;
+      background-color: #222;
+      padding: 2px 16px;
+      color: white;
+    }
+
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Six columns side by side */
+    .column {
+      float: left;
+      width: 16.66%;
+    }
+
+    /* Add a transparency effect for thumnbail images */
+    .demo {
+      opacity: 0.6;
+    }
+    .active,
+    .demo:hover {
+      opacity: 1;
+    }
+
+    .title {
+      /* 최상단 라벨 */
+     
+      width: 80%;
+      height: 50px;
+      border: 3px solid black;
+      border-radius: 10px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      margin: 0px auto 0px auto;
+      /* 위에서 조금 떨어트리려다 컨테이너가 같이 움직여서 실패 */
+    }
+
+    .title>h1 {
+      /* 라벨 내용 */
+      width: 80%;
+      height: 45px;
+      color: black;
+
+      font-weight: bold;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      margin: auto;
+      letter-spacing: 5px;
+    }
+
+    .content {
+      /* content box */
+      background-color: skyblue;
+      display: flex;
+      width: 60%;
+      height: 500px;
+      border-radius: 10px;
+      font-size: 25px;
+      margin: 0px 10px 0px auto;
+    }
+    /*푸터 css*/
+    
+    .footer {
+      width: 101.5%;
+      margin-left: -0.8%;
+      background-image: url("background2.jpeg");
+    }
+
+    .footer>div {
+      display: flex;
+    }
+
+    .footer>h2 {
+      color: black;
+    }
+
+    .num {
+      /*동영상 가운데 정렬*/
+      display: flex;
+      justify-content: center;
+    }
+
+    .num>div {
+      /*카드-헤더 간격 조정*/
+      margin: 20px 30px auto 10px;
+    }
+
+    .card-header {
+      /*카드-해더틀 크기조정*/
+      width: 100%;
+      padding-bottom: 5%;
+    }
+
+    .ifr {
+      /*동영상 카드-해더div에 크기 맞춤*/
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+  <script>
+
+    // functions
+
+    //이미지 슬라이드 코드 입니다
+    $(document).ready(function () {
+      showSlides(1);
+    })
+    let slideIndex = 1;
+    showSlides(slideIndex);
+    // 이미지 옴기기
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+    // 썸네일 이미지 컨트롤
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+    function showSlides(n) {
+      let i;
+      let slides = document.getElementsByClassName("mySlides");
+      let dots = document.getElementsByClassName("demo");
+      let captionText = document.getElementById("caption");
+      if (n > slides.length) { slideIndex = 1 }
+      if (n < 1) { slideIndex = slides.length }
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex - 1].style.display = "block";
+      dots[slideIndex - 1].className += " active";
+      captionText.innerHTML = dots[slideIndex - 1].alt;
+    }
+    currentSlide(3);
+  </script>
+</head>
+<body>
+  <div class="container">
+    <!--------헤더-------->
+    <div class="title">
+      <h1>수리부엉이</h1>
+    </div>
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4">
+      <div class="col-md-3 mb-2 mb-md-0">
+        <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+          <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap">
+            <use xlink:href="#bootstrap"></use>
+          </svg>
+        </a>
+      </div>
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="index.html" class="nav-link px-2 ">홈</a></li>
+        <li><a href="고양이.html" class="nav-link px-2">고양이</a></li>
+        <li><a href="panda.html" class="nav-link px-2">판다</a></li>
+        <li><a href="ballpython.html" class="nav-link px-2">볼파이톤</a></li>
+        <li><a href="수리부엉이.html" class="nav-link px-2">수리부엉이</a></li>
+      </ul>
+    </header>
+    <!--인트로-->
+
+    <!--이미지들-->
+<div class="container2">
+    <div class="images_slide">
+      <div class="arrowcontainer">
+        <h2 style="text-align:center">수리부엉이</h2>
+        <!--슬라이드 쇼 이미지들 (이미지 변경 1)-->
+        <div class="mySlides">
+          <div class="numbertext">1 / 3</div>
+          <img src="image/공완희(수리부엉이)1.jpg" style="width: 300px;">
+        </div>
+        <div class="mySlides">
+          <div class="numbertext">2 / 3</div>
+          <img src="image/공완희(수리부엉이)2.jpg" style="width:300px;">
+        </div>
+        <div class="mySlides">
+          <div class="numbertext">3 / 3</div>
+          <img src="image/공완희(수리부엉이)3.jpg" style="width: 300px;">
+        </div>
+        <div class="mySlides">
+          <div class="numbertext">4 / 4</div>
+          <img src="image/공완희(수리부엉이)4.jpg" style="width: 300px;">
+        </div>
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
+        <a class="next" onclick="plusSlides(1)">❯</a>
+
+        <div class="caption-container">
+          <p id="caption"></p>
+        </div>
+        <br>
+        <!--슬라이드 쇼 이미지들 (이미지 변경 2)-->
+        <div class="row">
+          <div class="column">
+            <img class="demo cursor" src="image/공완희(수리부엉이)1.jpg" style="width:100%" onclick="currentSlide(1)" alt="수리부엉이1">
+          </div>
+          <div class="column">
+            <img class="demo cursor" src="image/공완희(수리부엉이)2.jpg" style="width:100%" onclick="currentSlide(2)" alt="수리부엉이2">
+          </div>
+          <div class="column">
+            <img class="demo cursor" src="image/공완희(수리부엉이)3.jpg" style="width:100%" onclick="currentSlide(3)" alt="수리부엉이3">
+          </div>
+          <div class="column">
+            <img class="demo cursor" src="image/공완희(수리부엉이)4.jpg" style="width:100%" onclick="currentSlide(4)" alt="수리부엉이4">
+          </div>
+        </div>
+      </div>
+      <!--설명-->
+    </div>
+    <div class="content">
+      <p>밤하늘을 지배하는 최상위 포식자 수리부엉이<br><span style="font-size: 20px;">
+        특징 : </br>
+     몸길이는 약 70cm이고, 대형 조류이며 머리에 난 귀 모양 깃털이 있다.
+     몸 전체가 황갈색을 띠며, 가슴·등·날개에는 검은 줄무늬가 있다. 그 밖의 부분에는 암갈색 무늬가 있다.
+     한국에서는 드문 텃새로 중부 이북 지방의 깊은 산 암벽과 강가의 절벽에서 생활한다.
+     낮에는 곧게 선 자세로 나뭇가지나 바위에 앉아 있고 주로 야행성이라서 밤에 활동한다.<br>
+
+     먹이 : </br>
+      주로 꿩, 산토끼, 쥐, 개구리, 도마뱀, 장지뱀, 비둘기 따위를 사냥해 먹는다. 
+      때로는 자기 몸집보다 큰 고라니를 사냥하기도 한다.<br>
+
+     서식지 : </br>
+      암벽, 산림 암벽 절개지, 바위산 등<br>
+    </span></p>
+    </div>
+  </div>
+  <div class="num">
+    <div class="card border-primary mb-3" style="max-width: 18rem;">
+      <div class="card-header">EBS 다큐프라임 - 수리부엉이</div>
+      <iframe class="ifr" src="https://www.youtube.com/embed/_7uBIgliFfQ?si=gsZruwy6ilqhbawV" frameborder=0
+        allowfullscreen></iframe>
+    </div>
+    <div class="card border-secondary mb-3" style="max-width: 18rem;">
+      <div class="card-header">TV 생물도감 - 수리부엉이</div>
+      <iframe class="ifr" src="https://www.youtube.com/embed/2git9DxzT6E?si=8w-7ggHHBLMil_di" frameborder=0
+        allowfullscreen></iframe>
+    </div>
+    <div class="card border-success mb-3" style="max-width: 18rem;">
+      <div class="card-header">TV 동물농장 - 새집주소 까먹은 새끼수리부엉이ㅋㅋ</div>
+      <iframe class="ifr" src="https://www.youtube.com/embed/98f9dJ5LiBY?si=KvtX53ynziuXuvCK" frameborder=0
+        allowfullscreen></iframe>
+    </div>
+  </div>
+  
+  <div class="footer">
+    <h2>참조</h2>
+    <div>
+      <h6>github: </h6>
+      <a href="https://github.com/karine0908">https://github.com/karine0908
+      </a>
+    </div>
+    <div>
+      <h6>벨로그: </h6>
+      <a href="https://velog.io/@gstudy0907">https://velog.io/@gstudy0907
+      </a>
+    </div>
+  </div>
+</body>
+
+</html>

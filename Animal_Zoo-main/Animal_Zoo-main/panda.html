@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>I 들의 동물원</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+    * {
+      font-family: 'Gowun Dodum', sans-serif;
+    }
+
+    body {
+      background-size: cover;
+      background-image: url("background1.jpeg");
+    }
+/*title css*/
+.mytitle {
+            width: 700px;
+            height: 100px;
+            margin:auto;
+            color: white;
+            text-align: center;
+
+            padding-top: 30px;
+            border-radius: 8px;
+
+            background-image: url('https://www.ancient-origins.net/sites/default/files/field/image/Agesilaus-II-cover.jpg');
+            background-position: center;
+            background-size: cover;
+             
+
+        }
+    .mycards {
+      width: 85%;
+      margin: 1% auto 1% auto;
+      background-color: none;
+    }
+/*contaioner css 1 and 2*/
+    .container {
+      background-color: rgba(225, 225, 225, 0.8);
+      width: 80%;
+      margin: auto;
+      border-radius: 50px;
+    }
+    .container2{
+      display: flex;
+      width: 80%;
+      margin : auto;
+    }
+    .container3{
+      width: 80%;
+      margin : auto;
+    }
+ /* 이미지 슬라이드 쇼 css 입니다 */
+    .footer {
+      background-color: #222;
+      background-image: url("background2.jpeg");
+      width: 100%;
+      height: 200px;
+      border: 20px;
+    }
+
+    /* 이미지 슬라이드 쇼 css 입니다 */
+    .images_slide {
+       display: flex;
+        justify-content: space-between;
+        width: 300px;
+        
+        margin: 1% 10px 1% 0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .mySlides>img {
+      vertical-align: middle;
+      width: 100px;
+      height: 300px;
+    }
+
+    /* Position the image container (needed to position the left and right arrows) */
+    .arrowcontainer {
+      position: relative;
+    }
+
+    /* Hide the images by default */
+    .mySlides {
+      display: none;
+    }
+
+    /* Add a pointer when hovering over the thumbnail images */
+    .cursor {
+      cursor: pointer;
+    }
+
+    /* Next & previous buttons */
+    .prev,
+    .next {
+      cursor: pointer;
+      position: absolute;
+      top: 40%;
+      width: auto;
+      padding: 16px;
+      margin-top: -50px;
+      color: white;
+      font-weight: bold;
+      font-size: 20px;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* Position the "next button" to the right */
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+
+    /* On hover, add a black background color with a little bit see-through */
+    .prev:hover,
+    .next:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    /* Number text (1/3 etc) */
+    .numbertext {
+      color: #f2f2f2;
+      font-size: 12px;
+      padding: 8px 12px;
+      position: absolute;
+      top: 0;
+    }
+
+    /* Container for image text */
+    .caption-container {
+      text-align: center;
+      background-color: #222;
+      padding: 2px 16px;
+      color: white;
+    }
+
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Six columns side by side */
+    .column {
+      float: left;
+      width: 16.66%;
+    }
+
+    /* Add a transparency effect for thumnbail images */
+    .demo {
+      opacity: 0.6;
+    }
+    .active,
+    .demo:hover {
+      opacity: 1;
+    }
+
+    .title {
+      /* 최상단 라벨 */
+      width: 80%;
+      height: 50px;
+      border: 3px solid black;
+      border-radius: 10px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      margin: 0px auto 0px auto;
+      /* 위에서 조금 떨어트리려다 컨테이너가 같이 움직여서 실패 */
+    }
+
+    .title>h1 {
+      /* 라벨 내용 */
+      width: 80%;
+      height: 45px;
+      color: black;
+
+      font-weight: bold;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      margin: auto;
+      letter-spacing: 5px;
+    }
+
+    .content {
+      /* content box */
+      background-color:skyblue;;
+      display: flex;
+      width: 60%;
+      height: 500px;
+      border-radius: 10px;
+      font-size: 25px;
+      margin: 0px 10px 0px auto;
+    }
+    /*푸터 css*/
+    .footer{
+      width: 102.1%;
+      margin-left: -1%;
+    }
+    .footer > div{
+      color: black;
+      display: flex;
+    }
+    .footer > h2{
+      color: black;
+    }
+  </style>
+  <script>  
+
+    // functions
+
+    //이미지 슬라이드 코드 입니다
+    $(document).ready(function () {
+      showSlides(1);
+    })
+    let slideIndex = 1;
+    showSlides(slideIndex);
+    // 이미지 옴기기
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+    // 썸네일 이미지 컨트롤
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+    function showSlides(n) {
+      let i;
+      let slides = document.getElementsByClassName("mySlides");
+      let dots = document.getElementsByClassName("demo");
+      let captionText = document.getElementById("caption");
+      if (n > slides.length) { slideIndex = 1 }
+      if (n < 1) { slideIndex = slides.length }
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex - 1].style.display = "block";
+      dots[slideIndex - 1].className += " active";
+      captionText.innerHTML = dots[slideIndex - 1].alt;
+    }
+    currentSlide(3);
+  </script>
+</head>
+<body>
+  <div class="container">
+    <!--------헤더-------->
+    <div class="title">
+      <h1>팬더</h1>
+    </div>
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4">
+      <div class="col-md-3 mb-2 mb-md-0">
+        <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+          <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap">
+            <use xlink:href="#bootstrap"></use>
+          </svg>
+        </a>
+      </div>
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="index.html" class="nav-link px-2 ">홈</a></li>
+        <li><a href="고양이.html" class="nav-link px-2">고양이</a></li>
+        <li><a href="panda.html" class="nav-link px-2">판다</a></li>
+        <li><a href="ballpython.html" class="nav-link px-2">볼파이톤</a></li>
+        <li><a href="수리부엉이.html" class="nav-link px-2">수리부엉이</a></li>
+      </ul>
+    </header>
+    <!--인트로-->
+
+    <!--이미지들-->
+<div class="container2">
+    <div class="images_slide">
+      <div class="arrowcontainer">
+        <h2 style="text-align:center">귀여운 팬더입니다</h2>
+        <!--슬라이드 쇼 이미지들 (이미지 변경 1)-->
+        <div class="mySlides">
+          <div class="numbertext">1 / 4</div>
+          <img src="image/Panda1.jpg" style="width:100%">
+        </div>
+        <div class="mySlides">
+          <div class="numbertext">2 / 4</div>
+          <img src="image/Grosser_Panda.JPG" style="width:100%">
+        </div>
+        <div class="mySlides">
+          <div class="numbertext">3 / 4</div>
+          <img src="image/panda2.jpg" style="width:100%">
+        </div>
+        <div class="mySlides">
+            <div class="numbertext">4 / 4</div>
+            <img src="image/panda3.jpg" style="width:100%">
+          </div>
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
+        <a class="next" onclick="plusSlides(1)">❯</a>
+
+        <div class="caption-container">
+          <p id="caption"></p>
+        </div>
+        <br>
+        <!--슬라이드 쇼 이미지들 (이미지 변경 2)-->
+        <div class="row">
+          <div class="column">
+            <img class="demo cursor" src="image/panda1.jpg" style="width:100% ;height:25px;" onclick="currentSlide(1)" alt="Panda1">
+          </div>
+          <div class="column">
+            <img class="demo cursor" src="image/Grosser_Panda.JPG" style="width:100%" onclick="currentSlide(2)" alt="Panda2">
+          </div>
+          <div class="column">
+            <img class="demo cursor" src="image/panda2.jpg" style="width:100%" onclick="currentSlide(3)" alt="Panda3">
+          </div>
+          <div class="column">
+            <img class="demo cursor" src="image/panda3.jpg" style="width:100%" onclick="currentSlide(4)" alt="Panda4">
+          </div>
+        </div>
+      </div>
+      <!--설명-->
+    </div>
+    <div class="content">
+      <p>팬더는 곰인가요? 미국 너구리 인가요?<br><span style="font-size: 15px;">
+        <bold>팬더는 곰 입니다!</bold><br>
+        중국의 쓰촨성 일대에 주로 서식하는 곰과 포유류. 관화로는 슝마오(熊猫) 혹은 마오슝(貓熊)이라고 한다. 전자는 대륙, 후자는 대만을 포함한 중국 대륙 외 중화권에서 사용한다. 둘다 곰고양이라는 뜻이다.[1] 판다곰이라는 이름답게 곰과 판다속 대왕판다종이다.
+
+        원래는 곰과가 아니라 미국너구리과라고 알려져 있었지만, 새로운 화석의 발견[2]과 유전자 연구를 통해 곰의 일파임이 밝혀졌다. 하지만 대부분의 곰과는 달리 판다는 겨울철에도 서식지에 주식인 대나무가 넘쳐나는 탓에 북극곰처럼 동면을 하지 않는 특징이 있다.
+        
+        판다 성체의 무게는 약 70kg~120kg에 이른다. 아주 거대한 개체는 160kg까지 나간다고 한다. 암컷은 수컷보다 약 10~20% 정도 체구가 작다고 한다. 곰과 동물 중에서는 그렇게 크지 않은 편으로, 중형에 속한다.
+    </span></p>
+</div>
+</div>
+<div><div style="width: 78%; margin: auto; margin-left: 14%;">
+  <iframe width="300" height="245" src="https://www.youtube.com/embed/y-zIJLsl4YU">
+    </iframe>
+    <iframe width="300" height="245" src="https://www.youtube.com/embed/oZvl9kjJCnk">
+    </iframe>
+    <iframe width="300" height="245" src="https://www.youtube.com/embed/BdpdRs5T0Zo">
+    </iframe>
+  </div></div>
+  <div class="footer">
+    <h2>작성자 정보</h2>
+    <div>
+      <h6>Git hub </h6>
+      <a href="https://github.com/harrisbang2?tab=repositories"> 방세훈 https://github.com/harrisbang2?tab=repositories </a>
+    </div>  
+</div>
+
+  </div>
+</body>
+
+</html>

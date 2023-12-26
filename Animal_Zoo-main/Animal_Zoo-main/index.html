@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>I 들의 동물원</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+        /*mytitle */
+        .mytitle {
+            width: 700px;
+            height: 100px;
+            margin:auto;
+            color: white;
+            text-align: center;
+
+            padding-top: 30px;
+            border-radius: 8px;
+
+            background-position: center;
+            background-size: cover;
+             
+
+        }
+
+        .mycards {
+            width: 1000px;
+            margin: 30px auto 0px auto;
+
+        }
+
+        .mycards>img {
+            width: 500px;
+            height: 500px;
+        }
+
+        .title {
+            /* 최상단 라벨 */
+            width: 80%;
+            height: 50px;
+            border: 3px solid black;
+            border-radius: 10px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            margin: 0px auto 0px auto;
+            /* 위에서 조금 떨어트리려다 컨테이너가 같이 움직여서 실패 */
+        }
+
+        .title>h1 {
+            width: 80%;
+            height: 45px;
+            color: black;
+
+            font-weight: bold;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            margin: auto;
+            letter-spacing: 5px;
+        }
+
+        * {
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+
+        body {     
+            background-size: cover;
+            background-image: url('background1.jpeg'); 
+        } 
+
+
+        .mycards {
+            width: 80%;
+            margin: 1% auto 1% auto;
+            background-color: none;
+            text-align: center;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+             
+        }
+
+        .mymain {
+            background-color: wheat;
+            height: 100%;
+            width: 80%;
+            margin: 20px auto 20px auto;
+            display: flex;
+
+            border: 1px solid white;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .mymain>div {
+            margin: auto;
+        }
+
+        .mymain1 {
+            width: 50%;
+        }
+
+        .mymain2 {
+            width: 40%;
+        }
+
+        .mb-3>button {
+            width: 100px;
+            height: 40px;
+            margin: 30px auto auto 72%;
+        }
+
+        .footer {
+            width: 102%;
+           height: 200px;
+            margin-left: -0.9;
+            background-size: cover;
+            background-position: center;
+            background-image: url("background2.jpeg");
+            opacity: 0.8;
+            border-radius: 50px;
+
+        }
+
+        .footer>div {
+            height: 50px;
+        }
+
+        .footer>div>a>img {
+            float: left;
+            width: 50px;
+            height: 50px;
+            margin-left: 40px;
+        }
+    </style>
+    <script type="module">
+        // functions
+      // Firebase SDK 라이브러리 가져오기
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+      import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+      import {
+        collection,
+        addDoc,
+      } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+      import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+      // Firebase 구성 정보 설정
+      const firebaseConfig = {
+        apiKey: "AIzaSyCnWzN5W6X8uCEa8kDshO7yFHMmPlyK2Bw",
+        authDomain: "sparta-b8ff7.firebaseapp.com",
+        projectId: "sparta-b8ff7",
+        storageBucket: "sparta-b8ff7.appspot.com",
+        messagingSenderId: "382464668576",
+        appId: "1:382464668576:web:82e59da68a7a5b9aecaac5",
+        measurementId: "G-9S7MFN1FS9",
+      };
+      // Firebase 인스턴스 초기화
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+      // 넣기
+    $("#savebtn").click(async function () {
+        let question = $("#question").val();
+        let name = $("#name").val();
+        let email = $("#email").val();
+    let doc = {
+      'question':question,
+      'name':name,
+      'email':email,
+      };
+    await addDoc(collection(db, "animals"), doc);
+    alert("질문을 넣었습니다 질문은 질문받기.html에서 확인가능합니다");
+    window.location.reload();
+})//
+
+
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">
+            <h1>I들의 동물원</h1>
+        </div>
+        <!--헤더-->
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4">
+            <div class="col-md-3 mb-2 mb-md-0">
+                <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+                    <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap">
+                        <use xlink:href="#bootstrap"></use>
+                    </svg>
+                </a>
+            </div>
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="index.html" class="nav-link px-2 ">홈</a></li>
+                <li><a href="고양이.html" class="nav-link px-2">고양이</a></li>
+                <li><a href="panda.html" class="nav-link px-2">판다</a></li>
+                <li><a href="ballpython.html" class="nav-link px-2">볼파이톤</a></li>
+                <li><a href="수리부엉이.html" class="nav-link px-2">수리부엉이</a></li>
+            </ul>
+        </header>
+        <!--인트로-->
+        <div class="mytitle">
+            <h1>이 동물의 이름은 무엇일까요?</h1>
+        </div>
+        <!--이미지들-->
+        <div class="mycards">
+            <div class="row row-cols-1 row-cols-md-4 g-4">
+                <div class="col">
+                    <div class="card h-100">
+                        <a href="수리부엉이.html">
+                            <img src="image/공완희(수리부엉이)1.jpg" class="card-img-top" alt="..." style="height: 200px;">
+                        </a>
+                        <div class="card-body">
+                            수리부엉이
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <a href="ballpython.html">
+                            <img src="image/Ball Python4.jpeg" class="card-img-top" alt="..." style="height: 200px;">
+                        </a>
+                        <div class="card-body">
+                            볼파이톤
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <a href="고양이.html">
+                            <img src="image/고양이4.jpg" class="card-img-top" alt="..." style="height: 200px;">
+                        </a>
+                        <div class="card-body">
+                            고양이
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <a href="panda.html">
+                            <img src="image/panda1.jpg" class="card-img-top" alt="..." style="height: 200px;">
+                        </a>
+                        <div class="card-body">
+                            펜더
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mymain">
+            <div class="mymain1">
+                <label for="exampleFormControlTextarea1" class="form-label">질문 받기</label>
+                <textarea id="question" class="form-control" id="exampleFormControlTextarea1" rows="8"
+                    style="resize: none;width: 100; height: 100%;"></textarea>
+            </div>
+            <div class="mymain2">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">이름</label>
+                    <input id="name" type="email" class="form-control" id="exampleFormControlInput1" placeholder="name">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">메일 주소</label>
+                    <input id="email" type="email" class="form-control" id="exampleFormControlInput1"
+                        placeholder="name@example.com">
+                </div>
+                <button id="savebtn" type="button" style="float: right;" class="btn btn-secondary">보내기</button>
+               
+            </div>
+        </div>
+        <!--질문넣기 form-->
+        <!--footer-->
+        <div class="footer">
+            <div>
+                <a href="https://github.com/karine0908/sparta">
+                    <img src="image/완희님.png" class="img-fluid" alt="...">
+                </a>
+                <h4 style="color: black;">공완희 :INTJ(수리부엉이) </h4>
+            </div>
+            <div>
+                <a href="https://github.com/harrisbang2?tab=repositories">
+                    <img src="image/세훈님.png" class="img-fluid" alt="...">
+                </a>
+                <h4 style="color: black;">방세훈 :INFP(펜더) </h4>
+            </div>
+            <div>
+                <a href="https://tangpoo.tistory.com/">
+                    <img src="image/효일.png" class="img-fluid" alt="...">
+                </a>
+                <h4 style="color: black;">이효일 :INTJ(고양이) </h4>
+            </div>
+            <div>
+                <a href="https://velog.io/@qkrwjdtjqwh">
+                    <img src="image/정섭님.png" class="img-fluid" alt="...">
+                </a>
+                <h4 style="color: black;">박정섭 :INTP(볼파이톤) </h4>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
